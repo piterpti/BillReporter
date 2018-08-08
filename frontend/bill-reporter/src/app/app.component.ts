@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { AppService} from './services/app.service';
 
 
 @Component({
@@ -9,13 +9,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent {
   title = 'BillReporter abc';
-  springdata;
 
-  constructor(private http: HttpClient) {
-    this.getData();
+  constructor(private app: AppService) {
+    this.app.authenticate(undefined, undefined);
   }
 
-  getData() {
-    return this.http.get('api/hi').subscribe(res => this.springdata = res);
-  }
 }

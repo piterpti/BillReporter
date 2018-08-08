@@ -1,22 +1,44 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpClientModule} from '@angular/common/http';
+import { NgModule, Injectable } from '@angular/core';
+import { HttpClientModule, HttpInterceptor, HttpRequest, HttpHandler } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
-import { HeroComponent } from './hero/hero.component';
+import { FinancesComponent } from './components/finances/finances.component';
+import { LoginComponent } from './components/login/login.component';
+import { AppService } from './services/app.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class XhrInterceptor implements HttpInterceptor {
+
+  intercept(req: HttpRequest<any>, next: HttpHandler) {
+    const xhr = req.clone({
+      headers: req.headers.set('X-Requested-With', 'XMLHttpRequest')
+    });
+
+    return next.handle(xhr);
+  }
+
+}
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeroComponent
+    FinancesComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [AppService, {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

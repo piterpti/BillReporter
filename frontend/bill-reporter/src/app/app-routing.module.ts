@@ -1,11 +1,14 @@
 import { NgModule, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes} from '@angular/router';
-import { HeroComponent } from './hero/hero.component';
+
+import { FinancesComponent} from './components/finances/finances.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
-  {path: 'heroes', component: HeroComponent},
-  {path: '', redirectTo: '/', pathMatch: 'full'}
+  {path: '', redirectTo: '/', pathMatch: 'full'},
+  {path: 'finances', component: FinancesComponent},
+  {path: 'login', component: LoginComponent}
 ];
 
 @NgModule({
