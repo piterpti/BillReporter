@@ -10,6 +10,8 @@ import { LoginComponent } from './components/login/login.component';
 import { AppService } from './services/app.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })

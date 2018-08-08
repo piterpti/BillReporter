@@ -26,10 +26,10 @@
           <li>
             <a routerLink="/finances">Zarządzaj finansami</a>
           </li>
-          <li>
-            <a routerLink="">Wyloguj się</a>
+          <li [hidden]="!authenticated()">
+            <a (click)="logout()">Wyloguj się</a>
           </li>
-          <li>
+          <li [hidden]="authenticated()">
             <a routerLink="/login">Zaloguj się</a>
           </li>
         </ul>
